@@ -7,8 +7,8 @@ def create_character(char_name, strength, intelligence, charisma):
     
     if error_msg_char_name: return error_msg_char_name
     elif error_msg_stats: return error_msg_stats
-    else:
-        return f"{ char_name }\nSTR { get_stat(strength) }\nINT { get_stat(intelligence) }\nCHA { get_stat(charisma) }"
+
+    return f"{ char_name }\nSTR { get_stat(strength) }\nINT { get_stat(intelligence) }\nCHA { get_stat(charisma) }"
 
 def validate_char_name(name):
     if not isinstance(name, str):
@@ -19,6 +19,7 @@ def validate_char_name(name):
         return "The character name is too long"
     if ' ' in name:
         return "The character name should not contain spaces"
+    return None
 
 def validate_stats(strength, intelligence, charisma):
     if not all(isinstance(value, int) for value in (strength, intelligence, charisma)):
@@ -29,6 +30,7 @@ def validate_stats(strength, intelligence, charisma):
         return "All stats should be no more than 4"
     if sum([strength, intelligence, charisma]) != 7:
         return "The character should start with 7 points"
+    return None
 
 def get_stat(stat):
     total_points = ""
